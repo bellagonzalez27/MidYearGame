@@ -6,6 +6,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float startSpeed;
     [SerializeField] float timeStartSpeed; 
+    float jumpForce = 2f;
     float timeStartSpeedCounter;
     // Update is called once per frame
     void Start() {
@@ -22,6 +23,9 @@ public class PlayerMove : MonoBehaviour
         }
         if(Input.GetKey(KeyCode.RightArrow)){
             rb.AddForce(Vector3.right * speed * 2);
+        }
+        if(Input.GetKey(KeyCode.UpArrow)){
+            rb.AddForce(new Vector3(0, jumpForce), ForceMode.Impulse);
         }
     }
 }
