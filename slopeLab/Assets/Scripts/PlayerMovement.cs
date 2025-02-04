@@ -18,10 +18,10 @@ public class PlayerMove : MonoBehaviour
         }
 
         if(Input.GetKey(KeyCode.LeftArrow)){
-            rb.AddForce(Vector3.left * speed);
+            rb.AddForce(Vector3.left * speed * 2);
         }
         if(Input.GetKey(KeyCode.RightArrow)){
-            rb.AddForce(Vector3.right * speed);
+            rb.AddForce(Vector3.right * speed * 2);
         }
     }
 }
