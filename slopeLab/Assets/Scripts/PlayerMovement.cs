@@ -25,7 +25,7 @@ public class PlayerMove : MonoBehaviour
             rb.AddForce(Vector3.right * speed * 2);
         }
 
-        scoreboard.scoreCount++;
+        
         if(Input.GetKey(KeyCode.UpArrow)){
             rb.AddForce(new Vector3(0, jumpForce), ForceMode.Impulse);
         }
