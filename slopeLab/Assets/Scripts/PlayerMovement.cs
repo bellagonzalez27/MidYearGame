@@ -23,5 +23,7 @@ public class PlayerMove : MonoBehaviour
         if(Input.GetKey(KeyCode.RightArrow)){
             rb.AddForce(Vector3.right * speed * 2);
         }
+
+        scoreboard.scoreCount++;
     }
 }
