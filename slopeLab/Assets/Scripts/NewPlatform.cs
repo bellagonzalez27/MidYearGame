@@ -2,37 +2,30 @@ using UnityEngine;
 
 public class NewPlatform : MonoBehaviour
 {
-    public int platformCount = 0;
-    [SerializeField] int maxPlatforms = 100; // Set a larger limit
-    [SerializeField] GameObject[] platforms;
+    [SerializeField] GameObject[] platforms; // Platform prefabs
+    [SerializeField] float platformDestroyTime = 20f; // Time before a platform is destroyed
+    [SerializeField] float spawnDistance = 8f; // Distance between platforms
 
     void Start()
     {
-        Destroy(gameObject, 15f); // Destroy old platforms after 15 seconds
+        // Destroy platform after a certain time to free memory
+        Destroy(gameObject, platformDestroyTime);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && platformCount < maxPlatforms)
+        if (other.CompareTag("Player"))
         {
-            Debug.Log("Triggered by: " + other.gameObject.name);
+            Debug.Log("Player triggered platform: " + gameObject.name);
 
-            Instantiate(
+            // Spawn a new platform at a fixed distance ahead
+            GameObject newPlatform = Instantiate(
                 platforms[Random.Range(0, platforms.Length)],
-                new Vector3(transform.position.x, transform.position.y - 2, transform.position.z + 8),
+                new Vector3(transform.position.x, transform.position.y - 2, transform.position.z + spawnDistance),
                 Quaternion.identity
             );
 
-            platformCount++;
-        }
-    }
-
-    void Update()
-    {
-        // Reset platform count if no platforms exist
-        if (GameObject.FindGameObjectsWithTag("Platform").Length == 0)
-        {
-            platformCount = 0;
+            Debug.Log("New platform spawned: " + newPlatform.name);
         }
     }
 }
